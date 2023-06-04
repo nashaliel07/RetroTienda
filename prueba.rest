@@ -1,0 +1,20 @@
+GET http://localhost:3000
+
+###
+GET http://localhost:3000/img/Maniac.jpg
+###
+
+GET http://localhost:3000/ITEMS
+
+###
+
+POST http://localhost:3000/ITEMS
+Content-Type: application/json
+
+  {
+    "title": "Maniac",
+    "price": 7.50,
+    "image": "Maniac.jpg"
+  }
+
+  
