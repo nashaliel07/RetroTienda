@@ -1,18 +1,25 @@
 const express = require("express");
 const router = express.Router();
+const item = require("../servicios/item");
 
-//Models
-const Item = require("../models/Item.js");
+//MODELS
+const Item = require("../models/Item");
 
-//mock
-const itemsMock = require("../mock/items.json");
-
-//get items
+// GET ITEMS
 router.get("/", async (req, res) => {
   try {
-    const itemsFromDB = await Item.find();
-    console.log("fuegito:items", itemsFromDB);
-    res.json(itemsFromDB);
+    const itemTar = await item.bringItems(res.body);
+    res.json(itemTar);
+  } catch (err) {
+    res.json({ message: err.message });
+  }
+});
+
+// GET ITEM
+router.get("/item", async (req, res) => {
+  try {
+    const { title, price, image } = await item.modeloItems(req.body);
+    res.json(itemFromDB);
   } catch (err) {
     res.json({ message: err.message });
   }
@@ -21,70 +28,12 @@ router.get("/", async (req, res) => {
 // CREATE ITEM
 router.post("/", async (req, res) => {
   console.log(req.body);
-  const item = new Item({
-    title: req.body.title,
-    price: req.body.price,
-    image: req.body.image,
-  });
   try {
-    const newItem = await item.save();
+    const { title, price, image } = await item.createItem(req.body);
     res.json(newItem);
   } catch (err) {
     res.json({ message: err.message });
   }
 });
-//exportar
+
 module.exports = router;
-
-/**
- * @swagger
- * components:
- *  models:
- *     Itenm:
- *       type: object
- *       required:
- *          - title
- *          - price
- *          - image
- *       properties:
- *          title:
- *            type: string
- *            description: Nombre del videojuego
- *          price:
- *             type: Number
- *             description: precio del juego
- *          image:
- *             type: string
- *             description: imgane del producto//codigo aun en proceso
- *          
- *       example:
- *          "title": "Mega Man",
-            "price": 10.99,
-            "image": ""
- */
-
-/**
- * @swagger
- * tags:
- *  name: item.js
- *  description: API para la lista de productos|
- *
- */
-
-/**
- * @swagger
- * prueba.rest:
- *  GET http://localhost:3000:
- *      description: muestra lo que hay en localhost
- *
- *    GET http://localhost:3000/ITEMS
- *      response: Devuelve una lista de productos ingresados
- *
- *      POST http://localhost:3000/ITEMS: [Items.js]
- *       descripcion: añade productos
- *          content:
- *                  application/json
- *              models:
- *                  type: array
- *                  $ref: "localhost:3000/ITEMS"
- */
