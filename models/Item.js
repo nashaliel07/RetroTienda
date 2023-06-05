@@ -1,17 +1,21 @@
 const mongoose = require("mongoose");
-//comprobar si los datos ingresados son verdaderos
+
 const itemSchema = new mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   price: {
     type: Number,
-    require: true,
+    required: true,
   },
   image: {
     type: String,
-    require: true,
+    required: true,
+  },
+  inCart: {
+    type: Boolean,
+    default: false,
   },
 });
 

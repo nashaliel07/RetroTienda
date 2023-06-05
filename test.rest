@@ -1,0 +1,62 @@
+GET http://localhost:3000/
+
+###
+
+GET http://localhost:3000/items
+
+
+###
+
+GET http://localhost:3000/img/pokemon-rojo.jpg
+
+###
+POST http://localhost:3000/items
+Content-Type: application/json
+
+{
+    "title": "Pokemon Rojo",
+    "price": 9.99,
+    "image": "pokemon-rojo.jpg",
+    "inCart": false
+}
+
+###
+GET http://localhost:3000/product
+
+
+###
+POST http://localhost:3000/product
+Content-Type: application/json
+{
+    "title": "Pokemon Rojo",
+    "price": 9.99,
+    "image": "pokemon-rojo.jpg"
+    
+}
+
+###
+//id
+POST http://localhost:3000/product/
+
+###
+
+DELETE http://localhost:3000/product/
+
+
+
+###
+POST http://localhost:3000/order
+Content-Type: application/json
+
+{
+    "email": "test@test.com",
+    "items":[
+        {
+            "id": "5f87ebadbf386d24f40c286b",
+            "qty": 2
+        }
+    ]
+}
+
+
+
