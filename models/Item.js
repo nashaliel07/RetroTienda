@@ -8,11 +8,12 @@ const itemSchema = new mongoose.Schema({
   price: {
     type: Number,
     require: true,
-  },
+  },  
   image: {
     type: String,
-    require: true,
+    require: true, 
   },
 });
 
-module.exports = mongoose.model("Item", itemSchema);
+const Item = new mongoose.model("Item", itemSchema);
+module.exports = {Item};

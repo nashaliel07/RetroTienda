@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const cors = require("cors");
 const mongoose = require("mongoose");
+const {buscarCoincidencia} = require('./routes/buscador');
 
 //aqui base de datos BB.DD coneccion
 const uri =
